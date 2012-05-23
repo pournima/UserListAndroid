@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">User List Assignment Activity!</string>
+    <string name="app_name">UserListAssignment</string>
+	<string name="UserName">Name:</string>
+	<string name="UserAge">Age:</string>
+	<string name="ButtonList">View List</string>
+	<string name="textView">User List</string>
+</resources>
