@@ -1,13 +1,13 @@
 package com.pack.model;
 
-public class DummyUserClass {
+
+public class DummyUserClass{
 
 	private long id;
 	private String name;
 	private String age;
 	private String gender;
 	private String hobby;
-	private long fid;
 	
 	public long getId() {
 		return id;
@@ -39,13 +39,7 @@ public class DummyUserClass {
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
-	public long getFid() {
-		return fid;
-	}
-	public void setFid(long fid) {
-		this.fid = fid;
-	}
-	
-	
+
+
 	
 }

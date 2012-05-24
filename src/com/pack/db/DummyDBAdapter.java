@@ -4,12 +4,13 @@ package com.pack.db;
 	import java.util.List;
 
 	import com.pack.model.DummyUserClass;
+import com.pack.model.UserClass;
 
 	import android.content.ContentValues;
 	import android.content.Context;
 	import android.database.Cursor;
 	import android.database.SQLException;
-	import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase;
 
 	public class DummyDBAdapter {
 
@@ -21,19 +22,19 @@ package com.pack.db;
 	    public static final String KEY_HOBBY = "hobby";
 	    
 	    public static String[] allColumns = {KEY_NAME,KEY_AGE,KEY_GENDER,KEY_HOBBY};
-	    public DummyDBHelper ddbhelp;
+	    public DBHelper dbhelp;
 	    
 	  
 		public DummyDBAdapter(Context context) {
-			ddbhelp = new DummyDBHelper(context);
+			dbhelp = new DBHelper(context);
 		}
 
 		public void open() throws SQLException {
-			sqldb = ddbhelp.getWritableDatabase();
+			sqldb = dbhelp.getWritableDatabase();
 		}
 		
 		public void close() {
-			ddbhelp.close();
+			dbhelp.close();
 		}
 		
 		public long createList(String name, String age,String gender,String hobby) {
@@ -43,7 +44,7 @@ package com.pack.db;
 		        initialValues.put(KEY_GENDER, gender);
 		        initialValues.put(KEY_HOBBY, hobby);
 		        
-		    return sqldb.insert(ddbhelp.DATABASE_TABLE, null, initialValues);
+		    return sqldb.insert(dbhelp.DUMMY_DATABASE_TABLE, null, initialValues);
 		    }
 
 		  public boolean updateList(long rowId, String name, String age,String gender,String hobby) {
@@ -53,21 +54,21 @@ package com.pack.db;
 		        args.put(KEY_GENDER,gender);
 		        args.put(KEY_HOBBY,hobby);
 		        
-		        return sqldb.update(ddbhelp.DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+		        return sqldb.update(dbhelp.DUMMY_DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 		       
 		 }
 
 
-			public Cursor fetch(long rowId) throws SQLException {
-				Cursor mCursor = sqldb.query(true, ddbhelp.DATABASE_TABLE, allColumns, "fid=" + rowId,
-						null, null, null, null, null);
-	
-				if (mCursor != null) {
-					mCursor.moveToFirst();
-				}
-	
-				return mCursor;
-			}
+//			public Cursor fetch(long rowId) throws SQLException {
+//				Cursor mCursor = sqldb.query(true, ddbhelp.DATABASE_TABLE, allColumns, "fid=" + rowId,
+//						null, null, null, null, null);
+//	
+//				if (mCursor != null) {
+//					mCursor.moveToFirst();
+//				}
+//	
+//				return mCursor;
+//			}
 
 
 			private DummyUserClass cursorToComment(Cursor cursor) {
@@ -82,7 +83,7 @@ package com.pack.db;
 			public List<DummyUserClass> getAllComments() {
 				List<DummyUserClass> list = new ArrayList<DummyUserClass>();
 
-				Cursor cursor = sqldb.query(ddbhelp.DATABASE_TABLE,
+				Cursor cursor = sqldb.query(dbhelp.DUMMY_DATABASE_TABLE,
 						allColumns, null, null, null, null, null);
 
 				cursor.moveToFirst();
@@ -96,6 +97,35 @@ package com.pack.db;
 				return list;
 			}
 			
-		  
 
+			public List<DummyUserClass> getNAME(String name) {
+				List<DummyUserClass> comments = new ArrayList<DummyUserClass>();
+				// Select All Query
+				String selectQuery = "SELECT * FROM userdetails WHERE NAME= "+ name;
+				
+				Cursor cursor = sqldb.rawQuery(selectQuery, null);
+
+				cursor.moveToFirst();
+				while (!cursor.isAfterLast()) {
+					DummyUserClass comment = cursorToComment(cursor);
+					comments.add(comment);
+					cursor.moveToNext();
+				}
+				// Make sure to close the cursor
+				cursor.close();
+				return comments;
+			}		
+			
+
+			public Cursor fetch(String name) throws SQLException {
+			Cursor mCursor = sqldb.query(true,dbhelp.DUMMY_DATABASE_TABLE, allColumns, "name=" + name,
+					null, null, null, null, null);
+
+			if (mCursor != null) {
+				mCursor.moveToFirst();
+			}
+
+			return mCursor;
+		}
+			
 }

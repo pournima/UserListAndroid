@@ -28,6 +28,15 @@
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
+ 
+        <activity
+            android:name=".DisplayUserDetailsActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.DISPLAYUSERDETAILS" />
+
+                <category android:name="android.intent.category.INFO" />
+            </intent-filter>
+        </activity>
         
     </application>
 

@@ -7,4 +7,7 @@
 	<string name="UserAge">Age:</string>
 	<string name="ButtonList">View List</string>
 	<string name="textView">User List</string>
+	
+	<string name="Gender">Gender:</string>
+	<string name="Hobbies">Hobbies:</string>
 </resources>

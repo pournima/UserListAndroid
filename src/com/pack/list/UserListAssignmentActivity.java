@@ -60,16 +60,14 @@ public class UserListAssignmentActivity extends Activity {
 		        sqldb.insert(dbhelp.DATABASE_TABLE, null, initialValues);
 	        
 
-//				dummyHelp=new DummyDBHelper(UserListAssignmentActivity.this);
-//				sqldb=dummyHelp.getWritableDatabase();
-				  
+		        
 				ContentValues initialValues1 = new ContentValues();
 				initialValues1.put("name", userName.getText().toString());
 				initialValues1.put("age", userAge.getText().toString());
-				initialValues1.put("gender", "Female");
-				initialValues1.put("hobby", "Singing");
+				initialValues1.put("gender", "Male");
+				initialValues1.put("hobby", "Dancing");	
 
-				sqldb.insert(dummyHelp.DATABASE_TABLE, null, initialValues1);
+				sqldb.insert(dbhelp.DUMMY_DATABASE_TABLE, null, initialValues1);
 					   		
 				
 				System.out.println("inserted data");

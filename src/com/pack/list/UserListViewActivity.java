@@ -2,9 +2,12 @@ package com.pack.list;
 
 import java.util.List;
 import com.pack.db.DBAdapter;
+import com.pack.db.DummyDBAdapter;
+import com.pack.model.DummyUserClass;
 import com.pack.model.UserClass;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -24,7 +27,8 @@ public class UserListViewActivity extends Activity
 	private DBAdapter dataAdapter;
 	SQLiteDatabase database;
 	List<UserClass> ListValues;
-	
+	List<DummyUserClass> dummyValue;
+	DummyDBAdapter dbAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,17 @@ public class UserListViewActivity extends Activity
 								int arg2, long arg3) {
 							// TODO Auto-generated method stub
 						
+									
+						    String name = listView.getItemAtPosition(arg2).toString();
+						    
+						    System.out.println("------------"+name);
+						   
+													    
+							Intent i=new Intent(UserListViewActivity.this,DisplayUserDetailsActivity.class);
+
+							i.putExtra("name", name);
+							startActivity(i);
+							
 							
 						}
 						

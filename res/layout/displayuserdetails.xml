@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+  
+    <TextView
+        android:id="@+id/Name"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/UserName"
+        /> 
+      <TextView
+        android:id="@+id/displayUser"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Name"
+        />
+
+     <TextView
+        android:id="@+id/Gender"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Gender"
+        android:layout_below="@id/Name"
+        />      
+     <TextView
+        android:id="@+id/displayGender"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Gender"
+        android:layout_below="@id/Name"
+        />
+
+     <TextView
+        android:id="@+id/Age"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/UserAge"
+        android:layout_below="@id/Gender"
+        />      
+             
+     <TextView
+        android:id="@+id/displayAge"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Age"
+        android:layout_below="@id/Gender" />
+ 
+     
+    <TextView
+        android:id="@+id/Hobbies"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Hobbies"
+        android:layout_below="@id/Age"
+        /> 
+        
+       <TextView
+        android:id="@+id/displayHobbies"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Hobbies"
+        android:layout_below="@id/Age"
+        />
+</RelativeLayout>
