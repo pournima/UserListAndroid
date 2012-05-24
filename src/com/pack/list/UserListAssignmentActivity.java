@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class UserListAssignmentActivity extends Activity {
    
@@ -45,41 +46,53 @@ public class UserListAssignmentActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				
-				
-				dbhelp=new DBHelper(UserListAssignmentActivity.this);
-				sqldb=dbhelp.getWritableDatabase();
-				
-				
-				//dbAdapt.createList(userName.getText().toString(), userAge.getText().toString());
+				if (((userName.getText().toString()).length()>0 && (userAge.getText().toString()).length()>0)){
 
-		        ContentValues initialValues = new ContentValues();
-		        initialValues.put("name",userName.getText().toString());
-		        initialValues.put("age", userAge.getText().toString());
+					dbhelp=new DBHelper(UserListAssignmentActivity.this);
+					sqldb=dbhelp.getWritableDatabase();	
+					
+					       
+					insertData();
+					
+			        //insertDummyData();
+						   		
+					
+					System.out.println("inserted data");
+					
+					startActivity(i);
 
-		        sqldb.insert(dbhelp.DATABASE_TABLE, null, initialValues);
-	        
+				}
+				else{
 
-		        
-				ContentValues initialValues1 = new ContentValues();
-				initialValues1.put("name", userName.getText().toString());
-				initialValues1.put("age", userAge.getText().toString());
-				initialValues1.put("gender", "Male");
-				initialValues1.put("hobby", "Dancing");	
-
-				sqldb.insert(dbhelp.DUMMY_DATABASE_TABLE, null, initialValues1);
-					   		
-				
-				System.out.println("inserted data");
-				
-				startActivity(i);
-				
-				
+					Toast.makeText(getApplicationContext(),"Please enter data", Toast.LENGTH_SHORT).show();
+				}
 			}
+			
 		});
         
         
     }
     
+    private void insertData(){
+ 		//dbAdapt.createList(userName.getText().toString(), userAge.getText().toString());
+
+         ContentValues initialValues = new ContentValues();
+         initialValues.put("name",userName.getText().toString());
+         initialValues.put("age", userAge.getText().toString());
+
+         sqldb.insert(dbhelp.DATABASE_TABLE, null, initialValues);
+     }
+    
+    public void insertDummyData(){
+		ContentValues initialValues1 = new ContentValues();
+		initialValues1.put("name", userName.getText().toString());
+		initialValues1.put("age", userAge.getText().toString());
+		initialValues1.put("gender", "Male");
+		initialValues1.put("hobby", "Dancing");	
+
+		sqldb.insert(dbhelp.DUMMY_DATABASE_TABLE, null, initialValues1);
+    }
+    
+ 
     
 }

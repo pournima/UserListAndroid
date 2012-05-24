@@ -43,7 +43,7 @@ public class DisplayUserDetailsActivity extends Activity {
 
 	    
 		dbhelp=new DBHelper(DisplayUserDetailsActivity.this);
-		sqldb=dbhelp.getWritableDatabase();
+		sqldb=dbhelp.getReadableDatabase();
 		
 	    
 		Cursor cursor=sqldb.query("userdetails", new String[]{"name","age","gender","hobby"},null, null,null, null, null);
@@ -72,6 +72,7 @@ public class DisplayUserDetailsActivity extends Activity {
                         	txtGender.setText(dummyclass.getGender());
                         	txtHobby.setText(dummyclass.getHobby());
                         }
+
                 
                 }while(cursor.moveToNext());
 
